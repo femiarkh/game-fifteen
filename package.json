@@ -1,0 +1,22 @@
+{
+  "name": "gem-puzzle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-cli serve --watch --mode development --open http://localhost:8080/",
+    "eslint": "eslint src/**/*.js",
+    "lint": "npm run eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "webpack": "5.3.2",
+    "webpack-cli": "4.1.0",
+    "webpack-dev-server": "3.11.0"
+  }
+}
