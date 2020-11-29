@@ -1,0 +1,848 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+
+html {
+  font-size: 12px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #edede9;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 808px;
+}
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 1.8rem;
+  width: 100%;
+}
+
+.time-box, .moves, .pause {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.auto {
+  order: 0;
+  cursor: pointer;
+}
+
+@keyframes auto-blink {
+  from {
+    color: #000000;
+  }
+  to {
+    color: #ff0000;
+  }
+}
+
+.auto-active {
+  animation: auto-blink 0.5s infinite alternate-reverse;
+}
+
+.time-box {
+  order: 1;
+}
+
+.moves {
+  order: 2;
+  text-align: left;
+}
+
+.time-digits, .move-digits {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.sound {
+  order: 3;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.sound img {
+  width: 100%;
+  height: auto;
+}
+
+.pause {
+  order: 4;
+  cursor: pointer;
+}
+
+.pause-active {
+  color: #0000a0;
+}
+
+.frame-list {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  width: 800px;
+  height: 800px;
+  list-style: none;
+  border: 4px solid black;
+  background-image: url('./assets/images/floor.jpg');
+  background-size: cover;
+}
+
+.game-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 2rem;
+  list-style: none;
+  color: rgba(255, 255, 255, 1);
+  background-image: url('./assets/images/lid.jpg');
+  background-size: cover;
+  overflow-y: auto;
+}
+
+.game-menu-item {
+  margin: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.game-menu-item:hover {
+  color: rgb(251, 255, 0);
+  transition: 0.2s;
+}
+
+.game-name {
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.game-name-table, .game-name-table td {
+  border: 10px solid #ff8000;
+  border-collapse: collapse;
+}
+
+.game-name-table {
+  margin-bottom: 40px;
+}
+
+.game-name-table td {
+  padding: 20px;
+  width: 130px;
+  text-align: center;
+}
+
+.rss-word {
+  line-height: 6.7rem;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11rem;
+  font-weight: 800;
+  font-stretch: condensed;
+}
+
+.game-name-table .gem-puzzle-name {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.gem-word {
+  display: block;
+  font-size: 3.3rem;
+  color: rgb(251, 255, 0);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.puzzle-word {
+  display: block;
+  font-size: 2.4rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.win-message {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 2.8rem;
+  text-align: center;
+  color: rgb(251, 255, 0);
+}
+
+.picture-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: rgb(255, 255, 255, 0.6)
+}
+
+.pause-message {
+  margin-bottom: 30px;
+  color: rgb(251, 255, 255);
+  font-size: 3.6rem;
+  font-weight: 800;
+}
+
+.save-message {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(251, 255, 255);
+  font-size: 3.6rem;
+  font-weight: 800;
+  background-image: url('./assets/images/lid.jpg');
+  background-size: cover;
+}
+
+.best-results, .settings-menu, .load-menu, .about {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  color: rgb(251, 255, 255);
+  font-size: 1.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url('./assets/images/lid.jpg');
+  background-size: cover;
+  overflow-y: auto;
+}
+
+.settings-header, .records-header, .load-menu-header, .about-header {
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 400;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.settings-warning {
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.settings-box {
+  margin-bottom: 40px;
+}
+
+.settings-subheader {
+  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.settings-box select {
+  max-width: 400px;
+  font-size: 1.4rem;
+}
+
+.back-button {
+  padding: 10px;
+  color: rgb(255,255,255);
+  font-size: 1.6rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: transparent;
+  border: 2px solid rgb(255,255,255);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.back-button:hover {
+  color: rgb(251, 255, 0);
+  border: 2px solid rgb(251, 255, 0);
+  transition: 0.2s;
+}
+
+.records-subheader {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.records-table {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.records-table tr:not(:last-child) {
+  border-bottom: 2px solid rgb(251, 255, 255);
+}
+
+.records-table td {
+  padding: 20px;
+  font-size: 1.4rem;
+}
+
+.no-records {
+  margin: 20px;
+}
+
+.load-picture {
+  font-style: italic;
+}
+
+.saves-list {
+  padding: 0px 30px 30px 50px;
+}
+
+.save-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #edede9;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.save-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.save-item:hover {
+  color: rgb(251, 255, 0);
+  transition: 0.2s;
+}
+
+.no-save {
+  margin: 10px;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  font-size: 1.8rem;
+}
+
+.about-text {
+  font-style: italic;
+}
+
+.about-text p {
+  margin-bottom: 30px;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  text-indent: 40px;
+  text-align: justify;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: inset;
+  border-width: 2px;
+  border-color: #fde48e;
+  background-image: url('./assets/images/tile.jpg');
+  background-size: cover;
+}
+
+.tile-movable:hover, .tile-movable:active {
+  cursor: pointer;
+}
+
+.tile-right {
+  transform: translateX(100%);
+  transition: transform 0.2s;
+}
+
+.tile-down {
+  transform: translateY(100%);
+  transition: 0.2s;
+}
+
+.tile-left {
+  transform: translateX(-100%);
+  transition: 0.2s;
+}
+
+.tile-up {
+  transform: translateY(-100%);
+  transition: 0.2s;
+}
+
+.zero-tile {
+  cursor: default;
+  background-image: none;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.tile-3 {
+  width: 266px;
+  height: 266px;
+  font-size: 5rem;
+}
+
+.tile-4 {
+  width: 200px;
+  height: 200px;
+  font-size: 5rem;
+}
+
+.tile-5 {
+  width: 160px;
+  height: 160px;
+  font-size: 4rem;
+}
+
+.tile-6 {
+  width: 133px;
+  height: 133px;
+  font-size: 4rem;
+}
+
+.tile-7 {
+  width: 114px;
+  height: 114px;
+  font-size: 3rem;
+}
+
+.tile-8 {
+  width: 100px;
+  height: 100px;
+  font-size: 3rem;
+}
+
+@media (max-width: 860px), (max-height: 860px) {
+  html {
+    font-size: 12px;
+  }
+
+  .container {
+    width: min(80vw + 4px, 80vh + 4px);
+  }
+
+  .dashboard {
+    font-size: 1.6rem;
+  }
+
+  .sound {
+    width: 24px;
+    height: 24px;
+  }
+
+  .frame-list {
+    width: min(80vw, 80vh);
+    height: min(80vw, 80vh);
+  }
+
+  .game-menu {
+    font-size: 1.8rem;
+  }
+
+  .game-menu-item {
+    margin: 18px;
+  }
+
+  .game-name-table, .game-name-table td {
+    border: 7px solid #ff8000;
+    border-collapse: collapse;
+  }
+
+  .game-name-table {
+    margin-bottom: 30px;
+  }
+
+  .game-name-table td {
+    width: 100px;
+    padding: 0;
+  }
+
+  .rss-word {
+    font-size: 9rem;
+    line-height: 8rem;
+  }
+
+  .gem-word {
+    font-size: 3rem;
+  }
+
+  .puzzle-word {
+    font-size: 2.2rem;
+  }
+
+  .pause-message {
+    margin-bottom: 22px;
+    font-size: 3.4rem;
+  }
+
+  .save-message {
+    font-size: 3.4rem;
+  }
+
+  .win-message {
+    margin-bottom: 16px;
+    font-size: 1.8rem;
+  }
+
+  .best-results, .settings-menu, .load-menu, .about {
+    padding: 30px;
+  }
+
+  .settings-header, .records-header, .load-menu-header, .about-header {
+    margin-bottom: 16px;
+    font-size: 2.2rem;
+  }
+
+  .settings-box select {
+    max-width: 150px;
+  }
+
+  .saves-list {
+    padding: 0px 20px 20px 30px;
+  }
+
+  .save-item {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    font-size: 1.4rem;
+  }
+
+  .records-subheader {
+    margin-bottom: 5px;
+  }
+
+  .records-table {
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+
+  .records-table td {
+    padding: 16px;
+  }
+
+  .about-text p {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+
+  .tile-3 {
+    width: min(26.6vw, 26.6vh);
+    height: min(26.6vw, 26.6vh);
+    font-size: 4rem;
+  }
+
+  .tile-4 {
+    width: min(20vw, 20vh);
+    height: min(20vw, 20vh);
+    font-size: 4rem;
+  }
+
+  .tile-5 {
+    width: min(16vw, 16vh);
+    height: min(16vw, 16vh);
+    font-size: 3rem;
+  }
+
+  .tile-6 {
+    width: min(13.3vw, 13.3vh);
+    height: min(13.3vw, 13.3vh);
+    font-size: 3rem;
+  }
+
+  .tile-7 {
+    width: min(11.4vw, 11.4vh);
+    height: min(11.4vw, 11.4vh);
+    font-size: 2rem;
+  }
+
+  .tile-8 {
+    width: min(10vw, 10vh);
+    height: min(10vw, 10vh);
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 720px), (max-height: 720px) {
+  .game-menu-item {
+    margin: 12px;
+  }
+
+  .game-name-table {
+    margin-bottom: 30px;
+  }
+
+  .game-name-table td {
+    width: 90px;
+    padding: 0;
+  }
+
+  .rss-word {
+    font-size: 8rem;
+    line-height: 7rem;
+  }
+
+  .gem-word {
+    font-size: 2.6rem;
+  }
+
+  .puzzle-word {
+    font-size: 1.8rem;
+  }
+
+  .pause-message {
+    margin-bottom: 20px;
+    font-size: 3.2rem;
+  }
+
+  .save-message {
+    font-size: 3.2rem;
+  }
+}
+
+@media (max-width: 560px), (max-height: 560px) {
+  html {
+    font-size: 10px;
+  }
+
+  .dashboard {
+    font-size: 1.6rem;
+  }
+
+  .sound {
+    width: 20px;
+    height: 20px;
+  }
+
+  .game-menu {
+    font-size: 1.8rem;
+  }
+
+  .game-menu-item {
+    margin: 10px;
+  }
+
+  .game-name-table, .game-name-table td {
+    border: 7px solid #ff8000;
+  }
+
+  .game-name-table {
+    margin-bottom: 15px;
+  }
+
+  .game-name-table td {
+    width: 75px;
+    padding: 0;
+  }
+
+  .rss-word {
+    font-size: 7rem;
+    line-height: 7rem;
+  }
+
+  .gem-word {
+    font-size: 2.6rem;
+  }
+
+  .puzzle-word {
+    font-size: 2rem;
+  }
+
+  .pause-message {
+    margin-bottom: 18px;
+    font-size: 3rem;
+  }
+
+  .save-message {
+    font-size: 3rem;
+  }
+
+  .win-message {
+    margin-bottom: 10px;
+  }
+
+  .best-results, .settings-menu, .load-menu, .about {
+    padding: 20px;
+  }
+
+  .settings-header, .records-header, .load-menu-header, .about-header {
+    font-size: 2.2rem;
+  }
+
+  .settings-box select {
+    max-width: 150px;
+  }
+
+  .save-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-size: 1.4rem;
+  }
+
+  .records-subheader {
+    margin-bottom: 5px;
+  }
+
+  .records-table {
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+
+  .records-table td {
+    padding: 12px;
+  }
+
+  .about-text p {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+  }
+
+  .tile-3 {
+    font-size: 3rem;
+  }
+
+  .tile-4 {
+    font-size: 3rem;
+  }
+
+  .tile-5 {
+    font-size: 2.4rem;
+  }
+
+  .tile-6 {
+    font-size: 2.4rem;
+  }
+
+  .tile-7 {
+    font-size: 2rem;
+  }
+
+  .tile-8 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 440px), (max-height: 440px) {
+  .game-menu {
+    font-size: 1.5rem;
+  }
+
+  .game-menu-item {
+    margin: 5px;
+  }
+
+  .game-name-table, .game-name-table td {
+    border: 4px solid #ff8000;
+  }
+
+  .game-name-table {
+    margin-bottom: 16px;
+  }
+
+  .game-name-table td {
+    width: 55px;
+  }
+
+  .rss-word {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+
+  .gem-word {
+    font-size: 1.8rem;
+  }
+
+  .puzzle-word {
+    font-size: 1.5rem;
+  }
+
+  .win-message {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  }
+
+  .pause-message {
+    margin-bottom: 16px;
+    font-size: 2.4rem;
+  }
+
+  .save-message {
+    font-size: 2.4rem;
+  }
+
+  .dashboard {
+    font-size: 1.4rem;
+  }
+
+  .settings-header {
+    margin-bottom: 5px;
+    font-size: 2rem;
+  }
+
+  .settings-warning {
+    font-size: 1.4rem;
+  }
+
+  .settings-box {
+    margin-bottom: 10px;
+  }
+
+  .settings-subheader {
+    font-size: 1.8rem;
+  }
+
+  .settings-box label {
+    font-size: 1.6rem;
+  }
+
+  .settings-box select {
+    max-width: 100px;
+  }
+
+  .back-button {
+    padding: 3px;
+  }
+
+  .save-list {
+    padding: 0 5px 15px 15px;
+  }
+
+  .records-table {
+    font-size: 1.4rem;
+  }
+
+  .records-table td {
+    padding: 5px;
+  }
+}
