@@ -4,19 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-cli serve --watch --mode development --open http://localhost:8080/",
+    "build": "webpack --node-env production",
+    "start": "webpack-cli serve --node-env development --config ./webpack.config.js",
     "eslint": "eslint src/**/*.js",
     "lint": "npm run eslint"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^7.2.0",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint": "^8.46.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.21.2",
     "webpack": "5.3.2",
-    "webpack-cli": "4.1.0",
-    "webpack-dev-server": "3.11.0"
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^4.15.1"
   }
 }
