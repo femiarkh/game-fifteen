@@ -1,1 +1,10 @@
-"extends": "airbnb-base"
+extends: airbnb-base
+
+rules:
+  linebreak-style: off
+
+globals:
+  window: true
+  document: true
+  localStorage: true
+  getComputedStyle: true
